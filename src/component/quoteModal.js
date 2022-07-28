@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, ActivityIndicator, View, Pressable, Text } from 'react-native';
-import colors from "@util/colors";
+import { useTheme } from "@react-navigation/native";
 import { getAPI } from "@util/API";
 
 const QuoteModal = ({ close = () => { } }) => {
+  const { colors } = useTheme();
   const [loading, _loading] = useState(true)
   const [quote, _quote] = useState({})
 
@@ -23,18 +24,18 @@ const QuoteModal = ({ close = () => { } }) => {
       onRequestClose={close}
       animationType="none"
     >
-      <View style={styles.overlayStyle}>
-        <View style={styles.view} >
-          <View style={styles.header} >
-            <Text style={styles.headerText}>Today's quote</Text>
-            <Pressable hitSlop={15} onPress={close} ><Text style={styles.closeText} >X</Text></Pressable>
+      <View style={styles(colors).overlayStyle}>
+        <View style={styles(colors).view} >
+          <View style={styles(colors).header} >
+            <Text style={styles(colors).headerText}>Today's quote</Text>
+            <Pressable hitSlop={15} onPress={close} ><Text style={styles(colors).closeText} >X</Text></Pressable>
           </View>
           {loading ?
-            <ActivityIndicator size="small" color={colors.red} />
+            <ActivityIndicator size="small" color={colors.notification} />
             :
             <>
-              <Text style={styles.quote}>{quote?.q}</Text>
-              <Text style={styles.author}>&mdash; {quote?.a}</Text>
+              <Text style={styles(colors).quote}>{quote?.q}</Text>
+              <Text style={styles(colors).author}>&mdash; {quote?.a}</Text>
             </>
           }
 
@@ -47,27 +48,30 @@ const QuoteModal = ({ close = () => { } }) => {
 
 export default QuoteModal;
 
-const styles = StyleSheet.create({
+const styles = c => StyleSheet.create({
   overlayStyle: {
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    backgroundColor: 'rgba(0,0,0,0.8)',
     flex: 1,
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  header: { flexDirection: 'row', justifyContent: 'space-between' },
-  headerText: { fontSize: 20, fontWeight: 'bold' },
+  header: { flexDirection: 'row', justifyContent: 'space-between', color: c.text },
+  headerText: { fontSize: 20, fontWeight: 'bold', color: c.text },
   view: {
-    backgroundColor: colors.white, flex: 1,
+    backgroundColor: c.card, flex: 1,
     margin: 20, padding: 20,
-    minHeight: 150, borderRadius: 20
+    minHeight: 150, borderRadius: 20,
+    borderColor: c.border, borderWidth: 3
   },
   closeText: {
-    fontSize: 18, fontWeight: 'bold'
+    color: c.text,
+    fontSize: 18, fontWeight: 'bold',
   },
-  quote: { fontSize: 16, marginVertical: 10, lineHeight: 22 },
+  quote: { fontSize: 16, marginVertical: 10, lineHeight: 22, color: c.text },
   author: {
     fontSize: 16, marginVertical: 10,
-    alignSelf: 'flex-end', fontWeight: '600'
+    alignSelf: 'flex-end', fontWeight: '600',
+    color: c.text
   }
 });

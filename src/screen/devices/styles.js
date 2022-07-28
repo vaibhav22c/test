@@ -1,11 +1,10 @@
 import { StyleSheet } from "react-native";
-import colors from "@util/colors";
 
-export default styles = StyleSheet.create({
+export default styles = (c) => StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: colors.white
+    backgroundColor: c.background
   },
   flex: { flexGrow: 1 },
   btnView: {

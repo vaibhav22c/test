@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from "react";
-import { View, KeyboardAvoidingView, Alert, ScrollView, SafeAreaView } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, KeyboardAvoidingView, Alert, ScrollView } from "react-native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import { useDispatch } from "react-redux";
 import Input from "../../component/common/input";
@@ -8,13 +8,14 @@ import Picker from "../../component/common/picker";
 import Button from "../../component/common/button";
 import QuoteModal from "../../component/quoteModal";
 import { options } from "@util/const";
-import colors from "@util/colors";
+import COLOR from "@util/colors";
 import { addDevice, updateDevice, deleteDevice } from "@reducer/devices";
 import styles from "./styles";
 
 const AddDevice = ({ route }) => {
   const param = route?.params?.item || {}
   const navigation = useNavigation();
+  const { colors } = useTheme();
   const dispatch = useDispatch();
 
   const [showModal, _showModal] = useState()
@@ -88,9 +89,9 @@ const AddDevice = ({ route }) => {
   return (
     <KeyboardAvoidingView enabled
       behavior={Platform.OS === "ios" ? 'padding' : null}
-      style={styles.container} keyboardVerticalOffset={100}
+      style={styles(colors).container} keyboardVerticalOffset={100}
     >
-      <ScrollView contentContainerStyle={styles.flex}
+      <ScrollView contentContainerStyle={styles(colors).flex}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
       >
@@ -121,10 +122,10 @@ const AddDevice = ({ route }) => {
           multiline
         />
 
-        <View style={styles.btnView} >
+        <View style={styles(colors).btnView} >
           <Button title={id ? 'Update' : 'Save'} onPress={id ? _update : _save} />
           {id ?
-            <Button title={'Delete'} onPress={_delete} style={{ backgroundColor: colors.red }} />
+            <Button title={'Delete'} onPress={_delete} style={{ backgroundColor: COLOR.red }} />
             : null}
         </View>
         {

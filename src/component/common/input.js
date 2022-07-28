@@ -1,18 +1,19 @@
 import React, { memo } from 'react';
 import { TextInput, StyleSheet, Text, View } from 'react-native';
-import colors from '@util/colors';
+import { useTheme } from "@react-navigation/native";
+import COLOR from '@util/colors';
 
 const Input = ({ value, label, error, ...props }) => {
+  const { colors } = useTheme();
   return (
-    <View style={[styles.view, props?.style]}>
-      {label ? <Text style={styles.label} >{label}</Text> : null}
+    <View style={[styles(colors).view, props?.style]}>
+      {label ? <Text style={styles(colors).label} >{label}</Text> : null}
       <TextInput
         {...props}
-        // onChangeText
         value={value?.toString()}
         autoCapitalize="none"
-        style={[styles.textInput, {
-          borderColor: ((!value?.trim() && error)) ? colors.red : colors.lightgray,
+        style={[styles(colors).textInput, {
+          borderColor: ((!value?.trim() && error)) ? COLOR.red : colors.border,
           height: props?.multiline ? 120 : 45
         }]}
       />
@@ -22,21 +23,21 @@ const Input = ({ value, label, error, ...props }) => {
 
 export default memo(Input)
 
-const styles = StyleSheet.create({
+const styles = (c) => StyleSheet.create({
   view: { marginTop: 15 },
   label: {
     fontSize: 14, fontWeight: '500',
-    lineHeight: 20, color: colors.label
+    lineHeight: 20, color: c.text
   },
   textInput: {
     marginVertical: 6, paddingHorizontal: 8, paddingVertical: 0,
     borderWidth: 1, borderRadius: 8,
-    backgroundColor: colors.white,
+    backgroundColor: c.card,
     shadowColor: 'rgba(16,24,40,0.05)',
     shadowOffset: { width: 1, height: 2 },
     shadowOpacity: 1,
     shadowRadius: 2,
     elevation: 1,
-    color: colors.black
+    color: c.text
   }
 })

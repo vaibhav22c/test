@@ -1,17 +1,18 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import colors from '@util/colors';
+import { useTheme } from "@react-navigation/native";
 
 const Picker = ({ value, label, option, ...props }) => {
+  const { colors } = useTheme();
   return (
-    <View style={[styles.view, props?.style]}>
-      {label ? <Text style={styles.label} >{label}</Text> : null}
+    <View style={[styles(colors).view, props?.style]}>
+      {label ? <Text style={styles(colors).label} >{label}</Text> : null}
       <RNPickerSelect
         value={value}
         {...props}
         items={option}
-        style={styles.pickerStyles}
+        style={styles(colors).pickerStyles}
         useNativeAndroidPickerStyle={false}
       />
     </View >
@@ -20,38 +21,38 @@ const Picker = ({ value, label, option, ...props }) => {
 
 export default memo(Picker)
 
-const styles = StyleSheet.create({
+const styles = c => StyleSheet.create({
   view: { marginTop: 15 },
   label: {
     fontSize: 14, fontWeight: '500',
-    lineHeight: 20, color: colors.label
+    lineHeight: 20, color: c.text
   },
   pickerStyles: {
     inputIOS: {
       height: 45,
       marginVertical: 6, paddingHorizontal: 8, paddingVertical: 0,
       borderWidth: 1, borderRadius: 8,
-      backgroundColor: colors.white,
+      backgroundColor: c.card,
       shadowColor: 'rgba(16,24,40,0.05)',
       shadowOffset: { width: 1, height: 2 },
       shadowOpacity: 1,
       shadowRadius: 2,
       elevation: 1,
-      color: colors.black,
-      borderColor: colors.lightgray
+      color: c.text,
+      borderColor: c.border
     },
     inputAndroid: {
       height: 45,
       marginVertical: 6, paddingHorizontal: 8, paddingVertical: 0,
       borderWidth: 1, borderRadius: 8,
-      backgroundColor: colors.white,
+      backgroundColor: c.card,
       shadowColor: 'rgba(16,24,40,0.05)',
       shadowOffset: { width: 1, height: 2 },
       shadowOpacity: 1,
       shadowRadius: 2,
       elevation: 1,
-      color: colors.black,
-      borderColor: colors.lightgray
+      color: c.text,
+      borderColor: c.border
     },
   }
 })

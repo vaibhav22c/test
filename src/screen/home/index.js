@@ -1,19 +1,22 @@
 import React, { memo } from "react";
-import { View, FlatList, Text, Platform, PermissionsAndroid } from "react-native";
+import { View, FlatList, Text, Platform, useColorScheme } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { FloatingAction } from "react-native-floating-action";
 import DocumentPicker from "react-native-document-picker";
 import { showMessage } from "react-native-flash-message";
 import RNFS from "react-native-fs";
 import Share from 'react-native-share';
+import { useTheme } from '@react-navigation/native';
 
 import DeviceCard from "../../component/deviceCard";
+import { bulkAdd } from "@reducer/devices";
 import styles from "./styles";
-import { bulkAdd } from "../../redux/reducer/devices";
 
 const Home = ({ navigation }) => {
+  const { colors } = useTheme();
   const { devices } = useSelector(s => s.devices);
   const dispatch = useDispatch()
+  
   const _import = () => {
     DocumentPicker.pickSingle().then(file => {
       if (file?.type != 'application/json') {
@@ -65,7 +68,7 @@ const Home = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles(colors).container}>
       <FlatList
         data={devices || []}
         contentContainerStyle={{ flexGrow: 1 }}
@@ -74,9 +77,9 @@ const Home = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={() => {
           return (
-            <View style={styles.emptyView} >
-              <Text style={styles.fs20} >No record found.</Text>
-              <Text style={styles.fs20} >Click below + icon to add one.</Text>
+            <View style={styles(colors).emptyView} >
+              <Text style={styles(colors).fs20} >No record found.</Text>
+              <Text style={styles(colors).fs20} >Click below + icon to add one.</Text>
             </View>
           )
         }}
