@@ -22,10 +22,13 @@ export const userSlice = createSlice({
     },
     deleteDevice: (state, { payload }) => {
       state.devices = state?.devices?.filter(k => k?.id != payload)
+    },
+    bulkAdd: (state, { payload }) => {
+      state.devices = [...state.devices, ...payload]
     }
   }
 })
 
-export const { addDevice, updateDevice, deleteDevice } = userSlice.actions
+export const { addDevice, updateDevice, deleteDevice, bulkAdd } = userSlice.actions
 
 export default userSlice.reducer

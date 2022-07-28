@@ -28,7 +28,7 @@ const AddDevice = ({ route }) => {
   const _save = () => {
     if (!model?.trim()) {
       _showError(true)
-      showMessage({ message: "Please enter modal name", type: "warning" });
+      showMessage({ message: "Please enter device modal name.", type: "warning" });
       return
     }
     const param = {
@@ -39,13 +39,13 @@ const AddDevice = ({ route }) => {
       note: note?.trim()
     }
     dispatch(addDevice(param))
-    showMessage({ message: "Device added successfully", type: "success" });
+    showMessage({ message: "Device registration successfully.", type: "success" });
     navigation.goBack()
   }
   const _update = () => {
     if (!model?.trim()) {
       _showError(true)
-      showMessage({ message: "Please enter modal name", type: "warning" });
+      showMessage({ message: "Please enter device modal name.", type: "warning" });
       return
     }
     const param = {
@@ -56,7 +56,7 @@ const AddDevice = ({ route }) => {
       note: note?.trim()
     }
     dispatch(updateDevice(param))
-    showMessage({ message: "Record updated successfully", type: "success" });
+    showMessage({ message: "Device updated successfully.", type: "success" });
     navigation.goBack()
   }
   const _delete = () => {
@@ -80,7 +80,7 @@ const AddDevice = ({ route }) => {
 
   useEffect(() => {
     if (showModal == false) {
-      showMessage({ message: "Record deleted successfully", type: "success" });
+      showMessage({ message: "Device deleted successfully.", type: "success" });
       navigation.goBack()
     }
   }, [showModal])
@@ -102,7 +102,7 @@ const AddDevice = ({ route }) => {
           error={showError}
         />
         <Picker
-          label={'Device OS'}
+          label={'OS'}
           onValueChange={_os}
           option={options}
           value={os}

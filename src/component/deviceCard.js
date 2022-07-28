@@ -17,7 +17,7 @@ const DeviceCard = ({ item }) => {
           <Text style={styles.label} >Note: <Text style={styles.value}>{item?.note || `-`}</Text></Text>
         </View>
         <QRCode
-          value={item?.id?.toString()}
+          value={item?.model?.toString()}
           size={100}
         />
       </View>
@@ -45,11 +45,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
     marginVertical: 3
   },
   value: {
+    fontSize: 16,
     fontWeight: '400'
   }
 })

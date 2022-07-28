@@ -10,8 +10,8 @@ const Router = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Devices" component={Devices} />
+        <Stack.Screen name="Home" component={Home} options={{ title: 'Devices' }} />
+        <Stack.Screen name="Devices" component={Devices} options={{ title: 'Device' }}  />
       </Stack.Navigator>
     </NavigationContainer>
   );
