@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
-import colors from '@util/colors';
+import colors from '../../util/colors';
 
 const Button = ({ title, onPress, ...props }) => {
   return (

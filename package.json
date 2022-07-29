@@ -7,14 +7,17 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "web": "webpack serve --mode=development --config webpack.config.js"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.17.7",
     "@react-native-picker/picker": "^2.4.2",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "@reduxjs/toolkit": "^1.8.3",
     "react": "18.0.0",
+    "react-dom": "^18.2.0",
     "react-native": "0.69.3",
     "react-native-blob-util": "^0.16.2",
     "react-native-document-picker": "^8.1.1",
@@ -27,19 +30,26 @@
     "react-native-screens": "^3.15.0",
     "react-native-share": "^7.6.6",
     "react-native-svg": "^12.4.3",
+    "react-native-web": "^0.18.7",
     "react-redux": "^8.0.2",
-    "redux-persist": "^6.0.0",
-    "redux-persist-filesystem-storage": "^4.1.0"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
     "babel-jest": "^26.6.3",
+    "babel-plugin-react-native-web": "^0.18.7",
+    "babel-loader": "^8.2.5",
     "eslint": "^7.32.0",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.70.3",
-    "react-test-renderer": "18.0.0"
+    "react-test-renderer": "18.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
   },
   "jest": {
     "preset": "react-native"

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { TextInput, StyleSheet, Text, View } from 'react-native';
 import { useTheme } from "@react-navigation/native";
-import COLOR from '@util/colors';
+import COLOR from '../../util/colors';
 
 const Input = ({ value, label, error, ...props }) => {
   const { colors } = useTheme();

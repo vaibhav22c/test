@@ -7,9 +7,9 @@ import Input from "../../component/common/input";
 import Picker from "../../component/common/picker";
 import Button from "../../component/common/button";
 import QuoteModal from "../../component/quoteModal";
-import { options } from "@util/const";
-import COLOR from "@util/colors";
-import { addDevice, updateDevice, deleteDevice } from "@reducer/devices";
+import { options } from "../../util/const";
+import COLOR from "../../util/colors";
+import { addDevice, updateDevice, deleteDevice } from "../../redux/reducer/devices";
 import styles from "./styles";
 
 const AddDevice = ({ route }) => {
@@ -61,22 +61,32 @@ const AddDevice = ({ route }) => {
     navigation.goBack()
   }
   const _delete = () => {
-    Alert.alert(
-      "Are you sure want to delete?",
-      "",
-      [
-        {
-          text: "No",
-          style: "cancel"
-        },
-        {
-          text: "Yes", onPress: () => {
-            dispatch(deleteDevice(id))
-            _showModal(true)
+
+    if (Platform.OS == 'web') {
+      const res = window.confirm("Are you sure want to delete?");
+      if (res) {
+        dispatch(deleteDevice(id))
+        _showModal(true)
+      }
+    }
+    else {
+      Alert.alert(
+        "Are you sure want to delete?",
+        "",
+        [
+          {
+            text: "No",
+            style: "cancel"
+          },
+          {
+            text: "Yes", onPress: () => {
+              dispatch(deleteDevice(id))
+              _showModal(true)
+            }
           }
-        }
-      ]
-    );
+        ]
+      );
+    }
   }
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Modal, StyleSheet, ActivityIndicator, View, Pressable, Text } from 'react-native';
 import { useTheme } from "@react-navigation/native";
-import { getAPI } from "@util/API";
+import { getAPI } from "../util/API";
 
 const QuoteModal = ({ close = () => { } }) => {
   const { colors } = useTheme();

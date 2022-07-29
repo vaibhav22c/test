@@ -9,7 +9,7 @@ import Share from 'react-native-share';
 import { useTheme } from '@react-navigation/native';
 
 import DeviceCard from "../../component/deviceCard";
-import { bulkAdd } from "@reducer/devices";
+import { bulkAdd } from "../../redux/reducer/devices";
 import styles from "./styles";
 
 const Home = ({ navigation }) => {

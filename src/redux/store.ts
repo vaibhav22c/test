@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from 'redux-persist'
 import RootState from './reducer'
-import FilesystemStorage from 'redux-persist-filesystem-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const persistConfig = {
   key: 'root',
-  storage: FilesystemStorage,
+  storage: AsyncStorage,
   whitelist: ['devices'],
   blacklist: [],
 }
